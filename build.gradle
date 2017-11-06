@@ -36,7 +36,7 @@ dependencies {
     compile("com.github.codeclimate:sonar-wrapper:master-SNAPSHOT")
 
     // Plugins
-    compile("org.sonarsource.php:sonar-php-plugin:2.10.0.2087")
+    compile("org.sonarsource.python:sonar-python-plugin:1.8.0.1496")
 
     testCompile("org.assertj:assertj-core:2.8.0")
     testCompile("org.skyscreamer:jsonassert:1.5.0")
