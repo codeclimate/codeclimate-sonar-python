@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+
+BUILD_DIR=$(dirname $0)
+APP=$(find ${BUILD_DIR}/libs -name "codeclimate-sonar-php.jar" | head -n1)
+WRAPPER=$(find ${BUILD_DIR}/libs -name "sonar-wrapper*.jar" | head -n1)
+CORE=$(find ${BUILD_DIR}/libs -name "sonarlint-core*.jar" -or -name "sonarlint-client-api*.jar" | tr "\n" ":")
+LIBS=$(find ${BUILD_DIR}/libs -name "*.jar" | tr "\n" ":")
+
+CODE_DIR=$1; shift
+CONFIG_FILE=$1; shift
+
+java \
+  -noverify \
+  -cp ${APP}:${WRAPPER}:${CORE}:${LIBS} \
+  -Djava.awt.headless=true  \
+  -Dsonarlint.home="${BUILD_DIR}"  \
+  -Dproject.home="${CODE_DIR}"  \
+  -Dconfig="${CONFIG_FILE}"  \
+  -Dorg.freemarker.loggerLibrary=none  \
+  cc.App $@

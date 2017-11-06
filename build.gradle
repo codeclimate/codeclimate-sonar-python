@@ -1,0 +1,60 @@
+apply plugin: "java"
+
+repositories {
+    jcenter()
+    maven { url 'https://jitpack.io' }
+}
+
+task copyLibs(type: Copy) {
+    into "${buildDir}/libs"
+    from configurations.runtime
+    exclude "sonar-*-plugin*.jar"
+}
+
+task copyTestLibs(type: Copy) {
+    into "${buildDir}/test"
+    from configurations.testCompile
+}
+
+task copyPlugins(type: Copy) {
+    into "${buildDir}/plugins"
+    from configurations.testCompile
+    include "sonar-*-plugin*.jar"
+}
+
+task copyRunnable(type: Copy) {
+    into "${buildDir}"
+    from "bin/codeclimate-sonar"
+}
+
+task infra(dependsOn: ["copyPlugins", "copyLibs", "copyTestLibs", "copyRunnable", "jar"])
+
+build.dependsOn(infra)
+test.dependsOn(infra)
+
+dependencies {
+    compile("com.github.codeclimate:sonar-wrapper:master-SNAPSHOT")
+
+    // Plugins
+    compile("org.sonarsource.php:sonar-php-plugin:2.10.0.2087")
+
+    testCompile("org.assertj:assertj-core:2.8.0")
+    testCompile("org.skyscreamer:jsonassert:1.5.0")
+    testCompile("junit:junit:4.12")
+}
+
+test {
+    outputs.upToDateWhen { false }
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+    }
+}
+
+apply plugin: "idea"
+idea {
+    module {
+        downloadJavadoc = false
+        downloadSources = false
+    }
+}
