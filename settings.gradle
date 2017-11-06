@@ -15,4 +15,4 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'codeclimate-sonar-php'
+rootProject.name = 'codeclimate-sonar-python'

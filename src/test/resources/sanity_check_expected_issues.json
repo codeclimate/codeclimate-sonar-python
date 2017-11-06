@@ -1,36 +1,17 @@
 [
   {
     "type": "issue",
-    "check_name": "php:S108",
-    "severity": "major",
-    "description": "Either remove or fill this block of code.",
-    "content": {
-      "body": "<p>Most of the time a block of code is empty when a piece of code is really missing. So such empty block must be either filled or removed.</p>\n<h2>Noncompliant Code Example</h2>\n<pre>\nfor ($i = 0; $i &lt; 42; $i++){}  // Empty on purpose or missing piece of code ?\n</pre>\n<h2>Exceptions</h2>\n<p>When a block contains a comment, this block is not considered to be empty.</p>"
-    },
-    "location": {
-      "path": "main.php",
-      "lines": {
-        "begin": 7,
-        "end": 8
-      }
-    },
-    "categories": [
-      "Bug Risk"
-    ]
-  },
-  {
-    "type": "issue",
-    "check_name": "php:S2014",
+    "check_name": "python:S2733",
     "severity": "blocker",
-    "description": "Remove this use of \"$this\".",
+    "description": "Add the missing argument.",
     "content": {
-      "body": "<p><code>$this</code> refers to the current class instance. But static methods can be accessed without instantiating the class, and <code>$this</code>\nis not available to them. Using <code>$this</code> in a static context will result in a fatal error at runtime.</p>\n<h2>Noncompliant Code Example</h2>\n<pre>\nclass Clazz {\n  $name=NULL;  // instance variable\n\n  public static function foo(){\n    if ($this-&gt;name != NULL) {\n      // ...\n    }\n  }\n}\n</pre>\n<h2>Compliant Solution</h2>\n<pre>\nclass Clazz {\n  $name=NULL;  // instance variable\n\n  public static function foo($nameParam){\n    if ($nameParam != NULL) {\n      // ...\n    }\n  }\n}\n</pre>"
+      "body": "<p>The <code>__exit__</code> method is invoked with four arguments: self, type, value and traceback. Leave one of these out of the method declaration\nand the result will be a <code>TypeError</code> at runtime.</p>\n<h2>Noncompliant Code Example</h2>\n<pre>\nclass MyClass:\n   def __enter__(self):\n       pass\n   def __exit__(self, exc_type, exc_val):  # Noncompliant\n       pass\n</pre>"
     },
     "location": {
-      "path": "main.php",
+      "path": "main.py",
       "lines": {
-        "begin": 7,
-        "end": 7
+        "begin": 4,
+        "end": 4
       }
     },
     "categories": [
