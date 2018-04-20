@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 
 BUILD_DIR=$(dirname $0)
-APP=$(find ${BUILD_DIR}/libs -name "codeclimate-sonar-php.jar" | head -n1)
-WRAPPER=$(find ${BUILD_DIR}/libs -name "sonar-wrapper*.jar" | head -n1)
+APP=$(find ${BUILD_DIR}/libs -name "codeclimate-sonar-python" | head -n1)
+WRAPPER=$(find ${BUILD_DIR}/libs -name "codeclimate-ss-analyzer-wrapper*.jar" | head -n1)
 CORE=$(find ${BUILD_DIR}/libs -name "sonarlint-core*.jar" -or -name "sonarlint-client-api*.jar" | tr "\n" ":")
-LIBS=$(find ${BUILD_DIR}/libs -name "*.jar" | tr "\n" ":")
+LIBS=$(find ${BUILD_DIR}/libs -name "*.jar" | sort | tr "\n" ":")
 
 CODE_DIR=$1; shift
 CONFIG_FILE=$1; shift
