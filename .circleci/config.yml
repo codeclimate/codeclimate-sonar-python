@@ -12,7 +12,7 @@ jobs:
           command: make image
       - run:
           name: Test
-          command: make citest
+          command: make test
 
   release_images:
     machine:
