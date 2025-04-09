@@ -1,56 +1,31 @@
-# Code Climate Sonar-Python Engine
+# Try Qlty today, the newest edition of Code Climate Quality.
+#### This repository is deprecated and archived.
 
-`codeclimate-sonar-python` is a Code Climate engine that wraps [Sonarlint](http://www.sonarlint.org) in standalone mode.
+This is a repository for a Code Climate Quality plugin which is packaged as a Docker image.
 
-## Installation
-```
-make image
-```
+Code Climate Quality is being replaced with the new [Qlty](qlty.sh) code quality platform. Qlty uses a new plugin system which does not require packaging plugins as Docker images.
 
-## Tests
-```
-make test
-```
+As a result, this repository is no longer maintained and has been archived.
 
-## Usage
+## Advantages of Qlty plugins
+The new Qlty plugins system provides key advantages over the older, Docker-based plugin system:
 
-1. If you haven't already, [install the Code Climate CLI](https://github.com/codeclimate/codeclimate).
-2. Configure a `.codeclimate.yml` file in your repo.
-```yml
-engines:
-  sonar-python:
-    enabled: true
-    config:
-      tests_patterns:
-        - src/test/**
-exclude_paths:
-  - build/
-```
-3. Run `codeclimate analyze`.
+- Linting runs much faster without the overhead of virtualization
+- New versions of linters are available immediately without needing to wait for a re-packaged release
+- Plugins can be run with any arbitrary extensions (like extra rules and configs) without requiring pre-packaging
+- Eliminates security issues associated with exposing a Docker daemon
 
-## Custom configurations
+## Try out Qlty today free
 
-### Severity
-Ignore issues with severity below the minimum:
-```
-engines:
-  sonar-python:
-    enabled: true
-    config:
-      minimum_severity: critical  # default: major
-                                  # valid values are: info, minor, major, critical, blocker
-```
+[Qlty CLI](https://docs.qlty.sh/cli/quickstart) is the fastest linter and auto-formatter for polyglot teams. It is completely free and available for Mac, Windows, and Linux.
 
-## Sonar Documentation
+  - Install Qlty CLI:
+`
+curl https://qlty.sh | sh # Mac or Linux
+`
+or ` <windows install line> `
 
-http://www.sonarlint.org/commandline
+[Qlty Cloud](https://docs.qlty.sh/cloud/quickstart) is a full code health platform for integrating code quality into development team workflows. It is free for unlimited private contributors.
+  - [Try Qlty Cloud today](https://docs.qlty.sh/cloud/quickstart)
 
-http://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner
-
-Issue Tracker: http://jira.sonarsource.com/browse/SLCLI
-
-## Copyright
-
-This engine is developed by Code Climate using [SonarLint](http://www.sonarlint.org/commandline), it is not endorsed by SonarSoruce.
-
-See [LICENSE](LICENSE)
+**Note**: For existing customers of Quality, please see our [Migration Guide](https://docs.qlty.sh/migration/guide) for more information and resources.
